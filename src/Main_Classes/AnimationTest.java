@@ -1,6 +1,7 @@
 package Main_Classes;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.embed.swing.JFXPanel;
@@ -38,16 +39,16 @@ public class AnimationTest {
         group.getChildren().add(canvas);
         stage.setScene(scene);
 
+        ErrorHandler e = new ErrorHandler();
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         Image image = new Image("images/skeleton-animated-gif-20.gif");
         ImageView iv = new ImageView(image);
-        gc.drawImage(image, 100, 100);
-
         Animations a = new Animations();
 
-        AnimationTimer at = a.bone(gc, image);
-        at.start();
+        Timeline at = a.sneakyMan(gc, group);
+        at.play();
+
     }
 
 
