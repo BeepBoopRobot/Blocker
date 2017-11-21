@@ -39,7 +39,5 @@ public class Main {
         stage.show();
         Group group = new Group();
         ScreenGen.menuScreen(stage, group);
-        ErrorHandler e = new ErrorHandler();
-        e.nullFeature();
     }
 }

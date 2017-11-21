@@ -12,7 +12,6 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 
 import java.io.File;
@@ -20,7 +19,7 @@ import java.io.File;
 public class ScreenGen {
     public static void menuScreen(Stage stage, Group group) {
         String soundFile = "src/Sounds/Half - Life 2 Soundtrack- Intro.mp3";
-        String imageBak = "images/City17.jpg";
+        String imageBak = "images/test_images/City17.jpg";
         Scene menuScene = new Scene(group, 500, 312, Color.FORESTGREEN);
         GridPane menuPane = new GridPane();
         Image image = new Image(imageBak);

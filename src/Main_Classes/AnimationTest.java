@@ -3,15 +3,14 @@ package Main_Classes;
 import javafx.animation.AnimationTimer;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class AnimationTest {
@@ -42,7 +41,7 @@ public class AnimationTest {
         ErrorHandler e = new ErrorHandler();
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        Image image = new Image("images/skeleton-animated-gif-20.gif");
+        Image image = new Image("images/test_images/skeleton-animated-gif-20.gif");
         ImageView iv = new ImageView(image);
         Animations a = new Animations();
 
@@ -59,5 +58,13 @@ public class AnimationTest {
         stage.setHeight(200);
         stage.setResizable(false);
         stage.show();
+
+        Group group= new Group();
+        Scene scene = new Scene(group);
+        stage.setScene(scene);
+
+        Button close = new Button("Close");
+        close.setOnAction((ActionEvent) -> System.exit(0));
+        group.getChildren().add(close);
     }
 }
