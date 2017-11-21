@@ -47,6 +47,8 @@ public class AnimationTest {
 
         Timeline at = a.sneakyMan(gc, group);
         at.play();
+        Timeline at2 = a.bone(gc, group);
+        at2.play();
 
     }
 
