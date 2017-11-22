@@ -24,7 +24,7 @@ public class AnimationTest {
 
     private static void Launch() {
         Stage stage = new Stage();
-        stage.setTitle("I actually wanna fuckin die");
+        stage.setTitle("Animation Test");
         stage.setWidth(1000);
         stage.setHeight(1000);
         stage.setResizable(false);
