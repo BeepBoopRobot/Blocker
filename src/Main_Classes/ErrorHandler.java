@@ -16,4 +16,12 @@ public class ErrorHandler {
         al.setContentText("It doesn't work m8, press ok to continue");
         al.showAndWait();
     }
+
+    public void nullField() {
+        Alert al = new Alert(AlertType.INFORMATION);
+        al.setTitle("Need Input");
+        al.setHeaderText("This field cannot be empty");
+        al.setContentText("Please enter something to continue");
+        al.showAndWait();
+    }
 }

@@ -8,11 +8,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-class transition {
-    static void screenChange(Pane pane1, Pane pane2, Group group) {
+class Transition {
+    static void screenChange(Pane pane1, Pane pane2, Group group, int width, int height) {
         int animationLength = 1000;
 
-        Rectangle transitionScreen = new Rectangle(0, 0, 480, 500);
+        Rectangle transitionScreen = new Rectangle(0, 0, width, height);
         transitionScreen.toFront();
         transitionScreen.setFill(Color.BLACK);
         group.getChildren().add(transitionScreen);
