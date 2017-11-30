@@ -61,7 +61,7 @@ public class AnimationTest {
         stage.setResizable(false);
         stage.show();
 
-        Group group= new Group();
+        Group group = new Group();
         Scene scene = new Scene(group);
         stage.setScene(scene);
 

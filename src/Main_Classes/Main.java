@@ -41,7 +41,7 @@ public class Main {
     private static void launch() {
         database = new DatabaseConnectionService("src/Workspace.db");
         ErrorHandler e = new ErrorHandler();
-
+        Image image = new Image(new File("images/test_images/main_images/Menu_Image.jpg").toURI().toString());
         Stage stage = new Stage();
         stage.setTitle("Avoid Death");
         stage.setResizable(false);
@@ -51,6 +51,7 @@ public class Main {
 
         Group group = new Group();
         Scene scene = new Scene(group);
+       // scene.getStylesheets().add(Main.class.getResource("stylesheet.css").toExternalForm());
         Pane root = new Pane();
         Rectangle rect = new Rectangle(0, 0, screenWidth, screenHeight);
 
@@ -75,6 +76,7 @@ public class Main {
         });
         vb.getChildren().addAll(label, text, butt);
         rect.setFill(Color.LIGHTGRAY);
+        vb.setStyle("-fx-background-image: url(\"images/test_images/download.jpg;\")");
         root.getChildren().addAll(rect, vb);
         group.getChildren().add(root);
         stage.setScene(scene);
