@@ -1,6 +1,6 @@
-package Services;
+package services;
 
-import Models.DifficultySettings;
+import models.DifficultySettings;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

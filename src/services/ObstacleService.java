@@ -1,6 +1,6 @@
-package Services;
+package services;
 
-import Models.ObstacleData;
+import models.ObstacleData;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

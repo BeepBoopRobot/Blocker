@@ -1,12 +1,7 @@
-package Main_Classes;
+package main_classes;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.stage.WindowEvent;
-
-import java.awt.event.InputEvent;
-import java.util.Optional;
 
 public class ErrorHandler {
     public void nullFeature() {

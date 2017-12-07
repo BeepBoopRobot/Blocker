@@ -1,4 +1,4 @@
-package Main_Classes;
+package main_classes;
 
 import javafx.animation.*;
 import javafx.scene.Group;
@@ -10,11 +10,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-class Animations {
+public class Animations {
     private static AnimationTimer at;
 
-    Timeline bone(GraphicsContext gc, Group group) {
-        Image image = new Image("images/test_images/skeleton-animated-gif-20.gif");
+    public Timeline bone(GraphicsContext gc, Group group) {
+        Image image = new Image("files/images/test_images/skeleton-animated-gif-20.gif");
         ImageView img = new ImageView(image);
         group.getChildren().add(img);
         final Timeline tl = new Timeline();
@@ -29,7 +29,7 @@ class Animations {
         return tl;
     }
 
-    Timeline sneakyMan(GraphicsContext gc, Group group) {
+    public Timeline sneakyMan(GraphicsContext gc, Group group) {
         gc.setFont(new Font("Arial", 30));
         final Text rect = new Text(-100, 100, "ᕙ( ͡° ͜ʖ ͡°)ᕗ");
         rect.setFont(new Font("Arial", 30));

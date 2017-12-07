@@ -1,6 +1,6 @@
-package Services;
+package services;
 
-import Models.UserSettings;
+import models.UserSettings;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

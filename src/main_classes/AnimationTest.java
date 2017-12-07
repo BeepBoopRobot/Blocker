@@ -1,4 +1,4 @@
-package Main_Classes;
+package main_classes;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.Timeline;
@@ -41,7 +41,7 @@ public class AnimationTest {
         ErrorHandler e = new ErrorHandler();
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        Image image = new Image("images/test_images/skeleton-animated-gif-20.gif");
+        Image image = new Image("files/images/test_images/skeleton-animated-gif-20.gif");
         ImageView iv = new ImageView(image);
         Animations a = new Animations();
 

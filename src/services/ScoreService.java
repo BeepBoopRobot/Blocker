@@ -1,6 +1,6 @@
-package Services;
+package services;
 
-import Models.UserScores;
+import models.UserScores;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

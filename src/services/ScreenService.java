@@ -1,6 +1,6 @@
-package Services;
+package services;
 
-import Models.ScreenSize;
+import models.ScreenSize;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

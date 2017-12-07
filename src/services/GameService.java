@@ -1,6 +1,6 @@
-package Services;
+package services;
 
-import Models.Game;
+import models.Game;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

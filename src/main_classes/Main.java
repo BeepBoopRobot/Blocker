@@ -1,27 +1,21 @@
-package Main_Classes;
+package main_classes;
 
-import Models.*;
-import Services.*;
+import services.*;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Objects;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -29,6 +23,8 @@ import javafx.stage.Stage;
 public class Main {
     public static int screenWidth = 1000;
     public static int screenHeight = 562;
+    public static Group group;
+    public static Pane root;
 
     public static DatabaseConnectionService database;
 
@@ -41,7 +37,7 @@ public class Main {
     private static void launch() {
         database = new DatabaseConnectionService("src/Workspace.db");
         ErrorHandler e = new ErrorHandler();
-        Image image = new Image(new File("images/test_images/main_images/Menu_Image.jpg").toURI().toString());
+        Image image = new Image(new File("files/images/test_images/main_images/Menu_Image.jpg").toURI().toString());
         Stage stage = new Stage();
         stage.setTitle("Avoid Death");
         stage.setResizable(false);
@@ -49,10 +45,10 @@ public class Main {
         stage.setHeight(screenHeight);
         stage.show();
 
-        Group group = new Group();
+        group = new Group();
         Scene scene = new Scene(group);
-       // scene.getStylesheets().add(Main.class.getResource("stylesheet.css").toExternalForm());
-        Pane root = new Pane();
+        scene.getStylesheets().add("files/stylesheet.css");
+        root = new Pane();
         Rectangle rect = new Rectangle(0, 0, screenWidth, screenHeight);
 
         VBox vb = new VBox();
@@ -65,20 +61,28 @@ public class Main {
         TextField text = new TextField();
         text.setMaxWidth(200);
         Button butt = new Button("Enter");
-        butt.setOnAction(event -> {
-            if (!Objects.equals(text.getText(), "")) {
-                e.nullFeature();
-                System.out.println(text.getText());
-                Transition.screenChange(root, ScreenGen.getMenu(), group, screenWidth, screenHeight);
-            } else {
-                e.nullField();
+        butt.setOnAction(event -> enterMenu(text, e));
+        text.setOnKeyPressed(ke -> {
+            if (ke.getCode().equals(KeyCode.ENTER)) {
+                enterMenu(text, e);
             }
         });
+
         vb.getChildren().addAll(label, text, butt);
         rect.setFill(Color.LIGHTGRAY);
-        vb.setStyle("-fx-background-image: url(\"images/test_images/download.jpg;\")");
+       // vb.setId("pane");
         root.getChildren().addAll(rect, vb);
         group.getChildren().add(root);
         stage.setScene(scene);
+    }
+
+    public static void enterMenu(TextField text, ErrorHandler e) {
+        if (!Objects.equals(text.getText(), "")) {
+            e.nullFeature();
+            System.out.println(text.getText());
+            Transition.screenChange(root, ScreenGen.getMenu(), group, screenWidth, screenHeight);
+        } else {
+            e.nullField();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package Models;
+package models;
 
 public class ObstacleData {
     public String getObstacleName() {
