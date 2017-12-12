@@ -16,14 +16,13 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-
 import java.io.File;
 
 public class ScreenGen {
 
-    static Pane getMenu() {
+    static Pane getMenu(Group extGroup) {
         Group group = new Group();
-        String soundFile = "src/Sounds/Half - Life 2 Soundtrack- Intro.mp3";
+        String soundFile = "src/sounds/Half - Life 2 Soundtrack- Intro.mp3";
         Scene menuScene = new Scene(group, 1000, 562, Color.FORESTGREEN);
         GridPane menuPane = new GridPane();
         menuPane.setId("menu-pane");
@@ -35,16 +34,21 @@ public class ScreenGen {
         VBox vb = new VBox();
         vb.setPrefWidth(1000);
         vb.setPrefHeight(562);
+        vb.setSpacing(10);
         vb.setAlignment(Pos.CENTER);
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(2),
                         new KeyValue(mp.volumeProperty(), 0)));
         Button butt = new Button("hah");
+        Button butt2 = new Button("test");
         butt.setOnAction((ActionEvent) -> {
             System.out.println("Hello!");
             timeline.play();
         });
-        vb.getChildren().add(butt);
+        butt2.setOnAction((ActionEvent) -> {
+            Transition.screenChange(menuPane, getSettingScreen(), extGroup, 1000, 562);
+        });
+        vb.getChildren().addAll(butt, butt2);
 
 
         mp.setAutoPlay(true);
@@ -52,6 +56,11 @@ public class ScreenGen {
         MediaView mv = new MediaView(mp);
         menuPane.getChildren().addAll(vb);
         return menuPane;
+    }
+
+    static Pane getSettingScreen() {
+        Pane pane = new Pane();
+      return  pane;
     }
 
 }

@@ -1,23 +1,24 @@
 package main_classes;
 
-import services.*;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Pos;
-import javafx.scene.*;
-
-import java.io.*;
-import java.util.Objects;
-
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import services.DatabaseConnectionService;
+
+import java.io.File;
+import java.util.Objects;
 
 
 public class Main {
@@ -70,7 +71,6 @@ public class Main {
 
         vb.getChildren().addAll(label, text, butt);
         rect.setFill(Color.LIGHTGRAY);
-       // vb.setId("pane");
         root.getChildren().addAll(rect, vb);
         group.getChildren().add(root);
         stage.setScene(scene);
@@ -80,7 +80,7 @@ public class Main {
         if (!Objects.equals(text.getText(), "")) {
             e.nullFeature();
             System.out.println(text.getText());
-            Transition.screenChange(root, ScreenGen.getMenu(), group, screenWidth, screenHeight);
+            Transition.screenChange(root, ScreenGen.getMenu(group), group, screenWidth, screenHeight);
         } else {
             e.nullField();
         }

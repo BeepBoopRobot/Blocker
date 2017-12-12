@@ -52,6 +52,7 @@ class Transition {
     {
         group.getChildren().remove(pane1);
         group.getChildren().add(pane2);
+        System.out.println("Swapped!");
         pane2.toBack();
     }
 }
