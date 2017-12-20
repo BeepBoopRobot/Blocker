@@ -29,24 +29,25 @@ public class GameService {
         }
     }
 
-    public static void save(Game itemToSave, DatabaseConnectionService database) {
-
+    public static void save(Game game, DatabaseConnectionService database) {
+        System.out.println(game.toString());
         Game existingItem = null;
-        if (itemToSave.getInstanceID() != 0) existingItem = selectById(itemToSave.getInstanceID(), database);
+        if (game.getInstanceID() != 0) existingItem = selectById(game.getInstanceID(), database);
         try {
             if (existingItem == null) {
-                PreparedStatement statement = database.newStatement("INSERT INTO Game (InstanceID, UserID, Date, PlayTime) VALUES (?, ?, ?, ?, ?)");
-                statement.setInt(1, itemToSave.getInstanceID());
-                statement.setInt(2, itemToSave.getUserID());
-                statement.setString(3, itemToSave.getDateString());
-                statement.setString(4, itemToSave.getPlayTime());
+                PreparedStatement statement = database.newStatement("INSERT INTO Game (UserID, Date, PlayTime) VALUES (?, ?, ?)");
+                System.out.println(game.getUserID());
+                statement.setInt(1, game.getUserID());
+                System.out.println(game.getUserID());
+                statement.setString(2, game.getDateString());
+                statement.setString(3, game.getPlayTime());
                 database.executeUpdate(statement);
             } else {
                 PreparedStatement statement = database.newStatement("UPDATE Game SET UserID, Date, PlayTime WHERE InstanceID = ?");
-                statement.setInt(1, itemToSave.getUserID());
-                statement.setString(2, itemToSave.getDateString());
-                statement.setString(3, itemToSave.getPlayTime());
-                statement.setInt(4, itemToSave.getInstanceID());
+                statement.setInt(1, game.getUserID());
+                statement.setString(2, game.getDateString());
+                statement.setString(3, game.getPlayTime());
+                statement.setInt(4, game.getInstanceID());
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {
