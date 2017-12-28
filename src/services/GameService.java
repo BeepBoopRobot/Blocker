@@ -36,14 +36,14 @@ public class GameService {
         try {
             if (existingItem == null) {
                 PreparedStatement statement = database.newStatement("INSERT INTO Game (UserID, Date, PlayTime) VALUES (?, ?, ?)");
-                System.out.println(game.getUserID());
+                System.out.println(statement.toString());
                 statement.setInt(1, game.getUserID());
                 System.out.println(game.getUserID());
                 statement.setString(2, game.getDateString());
                 statement.setString(3, game.getPlayTime());
                 database.executeUpdate(statement);
             } else {
-                PreparedStatement statement = database.newStatement("UPDATE Game SET UserID, Date, PlayTime WHERE InstanceID = ?");
+                PreparedStatement statement = database.newStatement("UPDATE Game SET UserID = ?, Date = ?, PlayTime = ? WHERE InstanceID = ?");
                 statement.setInt(1, game.getUserID());
                 statement.setString(2, game.getDateString());
                 statement.setString(3, game.getPlayTime());
