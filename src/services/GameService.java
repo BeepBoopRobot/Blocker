@@ -30,15 +30,12 @@ public class GameService {
     }
 
     public static void save(Game game, DatabaseConnectionService database) {
-        System.out.println(game.toString());
         Game existingItem = null;
         if (game.getInstanceID() != 0) existingItem = selectById(game.getInstanceID(), database);
         try {
             if (existingItem == null) {
                 PreparedStatement statement = database.newStatement("INSERT INTO Game (UserID, Date, PlayTime) VALUES (?, ?, ?)");
-                System.out.println(statement.toString());
                 statement.setInt(1, game.getUserID());
-                System.out.println(game.getUserID());
                 statement.setString(2, game.getDateString());
                 statement.setString(3, game.getPlayTime());
                 database.executeUpdate(statement);

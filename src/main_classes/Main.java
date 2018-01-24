@@ -15,9 +15,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import models.Game;
 import services.DatabaseConnectionService;
+import services.GameService;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -26,6 +29,7 @@ public class Main {
     public static int screenHeight = 562;
     public static Group group;
     public static Pane root;
+    private int instance;
 
     public static DatabaseConnectionService database;
 
@@ -37,6 +41,7 @@ public class Main {
 
     private static void launch() {
         database = new DatabaseConnectionService("src/Workspace.db");
+
         ErrorHandler e = new ErrorHandler();
         Image image = new Image(new File("files/images/test_images/main_images/Menu_Image.jpg").toURI().toString());
         Stage stage = new Stage();
@@ -45,6 +50,10 @@ public class Main {
         stage.setWidth(screenWidth);
         stage.setHeight(screenHeight);
         stage.show();
+
+        ArrayList<Game> al = new ArrayList<>();
+        GameService.selectAll(al, database);
+        System.out.println(al);
 
         group = new Group();
         Scene scene = new Scene(group);
@@ -68,6 +77,11 @@ public class Main {
                 enterMenu(text, e);
             }
         });
+        try {
+            System.out.println(3 / 0);
+        } catch (Exception ex) {
+            e.exception(ex);
+        }
 
         vb.getChildren().addAll(label, text, butt);
         rect.setFill(Color.LIGHTGRAY);
@@ -79,7 +93,7 @@ public class Main {
     public static void enterMenu(TextField text, ErrorHandler e) {
         if (!Objects.equals(text.getText(), "")) {
             e.nullFeature();
-            System.out.println(text.getText());
+
             Transition.screenChange(root, ScreenGen.getMenu(group), group, screenWidth, screenHeight);
         } else {
             e.nullField();
