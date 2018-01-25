@@ -1,5 +1,8 @@
 package main_classes;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -7,7 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
+
+import java.io.File;
 
 class ScreenGen {
 
@@ -15,7 +24,7 @@ class ScreenGen {
 
     static Pane getMenu(Group extGroup) {
 
-        String soundFile = "files/sounds/Half - Life 2 Soundtrack- Intro.mp3";
+        String soundFile = "sounds/Half - Life 2 Soundtrack- Intro.mp3";
         GridPane menuPane = new GridPane();
         Group group = new Group();
         Scene menuScene = new Scene(group, 1000, 562, Color.FORESTGREEN);
@@ -23,25 +32,32 @@ class ScreenGen {
         menuPane.setStyle("-fx-background-size: 1000 562;");
         menuScene.getStylesheets().add("files/stylesheet.css");
 
+        MediaPlayer mp = null;
         try {
-            //Media media = new Media(new File(soundFile).toURI().toString());
-            //MediaPlayer mp = new MediaPlayer(media);
+            Media media = new Media(new File(soundFile).toURI().toString());
+            mp = new MediaPlayer(media);
         } catch (Exception ex) {
             e.exception(ex);
         }
+        if (mp == null) {
+            System.out.println("Unable to initialise media player");
+            System.exit(-999);
+        }
+
         VBox vb = new VBox();
         vb.setPrefWidth(1000);
         vb.setPrefHeight(562);
         vb.setSpacing(10);
         vb.setAlignment(Pos.CENTER);
-        /*Timeline timeline = new Timeline(
+
+        Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(2),
-                       new KeyValue(mp.volumeProperty(), 0)));*/
+                       new KeyValue(mp.volumeProperty(), 0)));
         Button butt = new Button("Play");
         Button butt2 = new Button("test");
         butt.setOnAction((ActionEvent) -> {
             e.explain();
-            //      timeline.play();
+                  timeline.play();
         });
         butt2.setOnAction((ActionEvent) -> {
             Transition.screenChange(menuPane, getSettingScreen(extGroup), extGroup, 1000, 562, 0);
@@ -49,9 +65,9 @@ class ScreenGen {
         vb.getChildren().addAll(butt, butt2);
 
 
-        //  mp.setAutoPlay(true);
-        // mp.setCycleCount(MediaPlayer.INDEFINITE);
-        //MediaView mv = new MediaView(mp);
+        mp.setAutoPlay(true);
+        mp.setCycleCount(MediaPlayer.INDEFINITE);
+        MediaView mv = new MediaView(mp);
         menuPane.getChildren().addAll(vb);
         return menuPane;
     }

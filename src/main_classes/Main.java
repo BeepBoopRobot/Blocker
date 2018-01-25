@@ -37,7 +37,7 @@ public class Main {
     }
 
     private static void launch() {
-        database = new DatabaseConnectionService("src/Workspace.db");
+        database = new DatabaseConnectionService("database/Workspace.db");
 
         ErrorHandler e = new ErrorHandler();
         Stage stage = new Stage();
