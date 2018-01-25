@@ -9,12 +9,21 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 class Transition {
-    static void screenChange(Pane pane1, Pane pane2, Group group, int width, int height) {
+    private static Rectangle transitionScreen;
+
+    static void screenChange(Pane pane1, Pane pane2, Group group, int width, int height, int color) {
         int animationLength = 1000;
 
-        Rectangle transitionScreen = new Rectangle(0, 0, width, height);
+        transitionScreen = new Rectangle(0, 0, width, height);
         transitionScreen.toFront();
-        transitionScreen.setFill(Color.BLACK);
+        switch (color) {
+            case 0:
+                transitionScreen.setFill(Color.BLACK);
+                break;
+            case 1:
+                transitionScreen.setFill(Color.WHITE);
+                break;
+        }
         group.getChildren().add(transitionScreen);
         FadeTransition ft = new FadeTransition((Duration.millis(animationLength)), transitionScreen);
         ft.setFromValue(0);
@@ -26,7 +35,7 @@ class Transition {
             @Override
             protected Void call() throws Exception {
                 try {
-                    Thread.sleep(animationLength*2);
+                    Thread.sleep(animationLength * 2);
                 } catch (InterruptedException ignored) {
                 }
                 return null;
@@ -48,11 +57,11 @@ class Transition {
         new Thread(changeScene).start();
     }
 
-    private static void swapScreens(Pane pane1, Pane pane2, Group group)
-    {
+    private static void swapScreens(Pane pane1, Pane pane2, Group group) {
         group.getChildren().remove(pane1);
         group.getChildren().add(pane2);
-        System.out.println("Swapped!");
+       // System.out.println("Swapped!");
         pane2.toBack();
     }
+
 }

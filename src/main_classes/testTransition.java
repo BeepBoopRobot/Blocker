@@ -2,11 +2,12 @@ package main_classes;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.*;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -36,14 +37,14 @@ public class testTransition {
         boneZone.setVgap(10);
 
         GridPane monkey = new GridPane();
-        Image bird = new Image("files/images/test_images/birb.gif");
+        Image bird = new Image("files/images/test_images/bird.gif");
         ImageView ab = new ImageView(bird);
         monkey.getChildren().add(ab);
         Button exitAb = new Button("<");
-        exitAb.setOnAction(event -> Transition.screenChange(monkey, defaultPane, group, 480, 500));
+        exitAb.setOnAction(event -> Transition.screenChange(monkey, defaultPane, group, 480, 500,0));
         monkey.getChildren().add(exitAb);
         Button enterAb = new Button("bird");
-        enterAb.setOnAction(event -> Transition.screenChange(defaultPane, monkey, group, 480, 500));
+        enterAb.setOnAction(event -> Transition.screenChange(defaultPane, monkey, group, 480, 500,0));
 
         Image bone = new Image("files/images/test_images/skeleton-animated-gif-20.gif");
         ImageView bones = new ImageView(bone);
@@ -51,13 +52,13 @@ public class testTransition {
         ImageView iv = new ImageView(image);
 
         Button exit = new Button("<");
-        exit.setOnAction(event -> Transition.screenChange(boneZone, defaultPane, group, 480, 500));
+        exit.setOnAction(event -> Transition.screenChange(boneZone, defaultPane, group, 480, 500,0));
         boneZone.getChildren().addAll(bones, exit);
         group2.getChildren().add(boneZone);
 
         Button enter = new Button();
         enter.setText(">");
-        enter.setOnAction(event -> Transition.screenChange(defaultPane, boneZone, group, 480, 500));
+        enter.setOnAction(event -> Transition.screenChange(defaultPane, boneZone, group, 480, 500,0));
 
         defaultPane = new GridPane();
         defaultPane.setHgap(10);

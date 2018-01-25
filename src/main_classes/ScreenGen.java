@@ -7,11 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-
-import java.io.File;
 
 class ScreenGen {
 
@@ -19,16 +15,17 @@ class ScreenGen {
 
     static Pane getMenu(Group extGroup) {
 
-        Group group = new Group();
         String soundFile = "files/sounds/Half - Life 2 Soundtrack- Intro.mp3";
-        Scene menuScene = new Scene(group, 1000, 562, Color.FORESTGREEN);
         GridPane menuPane = new GridPane();
+        Group group = new Group();
+        Scene menuScene = new Scene(group, 1000, 562, Color.FORESTGREEN);
         menuPane.setId("menu-pane");
         menuPane.setStyle("-fx-background-size: 1000 562;");
         menuScene.getStylesheets().add("files/stylesheet.css");
+
         try {
-            Media media = new Media(new File(soundFile).toURI().toString());
-            MediaPlayer mp = new MediaPlayer(media);
+            //Media media = new Media(new File(soundFile).toURI().toString());
+            //MediaPlayer mp = new MediaPlayer(media);
         } catch (Exception ex) {
             e.exception(ex);
         }
@@ -47,7 +44,7 @@ class ScreenGen {
             //      timeline.play();
         });
         butt2.setOnAction((ActionEvent) -> {
-            Transition.screenChange(menuPane, getSettingScreen(), extGroup, 1000, 562);
+            Transition.screenChange(menuPane, getSettingScreen(extGroup), extGroup, 1000, 562, 0);
         });
         vb.getChildren().addAll(butt, butt2);
 
@@ -59,8 +56,27 @@ class ScreenGen {
         return menuPane;
     }
 
-    private static Pane getSettingScreen() {
-        return new Pane();
+    static Pane getSettingScreen(Group extGroup) {
+        Pane settingPane = new Pane();
+        Group group = new Group();
+        Scene settingScene = new Scene(group, 1000, 562, Color.FORESTGREEN);
+        settingScene.getStylesheets().add("files/stylesheet.css");
+        settingPane.setStyle("-fx-background-size: 1000 562;");
+        settingPane.setId("setting-pane");
+
+        VBox vb = new VBox();
+        vb.setPrefWidth(1000);
+        vb.setPrefHeight(562);
+        vb.setSpacing(10);
+        vb.setAlignment(Pos.CENTER);
+
+        Button butt = new Button("test");
+        butt.setOnAction((ActionEvent) -> e.dbErr());
+        vb.getChildren().add(butt);
+
+        settingPane.getChildren().add(vb);
+        return settingPane;
+
     }
 
 }

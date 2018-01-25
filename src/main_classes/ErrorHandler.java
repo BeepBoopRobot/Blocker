@@ -23,8 +23,8 @@ class ErrorHandler {
 
     void nullField() {
         Alert al = new Alert(AlertType.INFORMATION);
-        al.setTitle("Need Input");
         al.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        al.setTitle("Need Input");
         al.setHeaderText("This field cannot be empty");
         al.setContentText("Please enter something to continue");
         al.showAndWait();
@@ -32,20 +32,29 @@ class ErrorHandler {
 
     void explain() {
         Alert al = new Alert(AlertType.INFORMATION);
+        al.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         al.setTitle("Not done");
         al.setHeaderText("The game isn't done yet");
         al.setContentText("Everything else is implemented but the main game. Sorry :/");
-        al.setWidth(500);
-        al.setHeight(500);
+        al.showAndWait();
+    }
+
+    void dbErr() {
+        Alert al = new Alert(AlertType.ERROR);
+        al.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        al.setTitle("Database Error!");
+        al.setHeaderText("There was a problem loading data from the database");
+        al.setContentText("I'll configure this alert later");
         al.showAndWait();
     }
 
     void exception(Exception ex) {
         Alert al = new Alert(AlertType.ERROR);
+        al.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         al.setTitle("Exception!");
         al.setHeaderText("Something broke!");
         al.setContentText("Error message: " + ex.getMessage());
-        al.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         ex.printStackTrace(pw);

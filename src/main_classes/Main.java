@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -19,31 +18,28 @@ import models.Game;
 import services.DatabaseConnectionService;
 import services.GameService;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
 
 public class Main {
-    public static int screenWidth = 1000;
-    public static int screenHeight = 562;
-    public static Group group;
-    public static Pane root;
+    private static int screenWidth = 1000;
+    private static int screenHeight = 562;
+    private static Group group;
+    private static Pane root;
     private int instance;
 
-    public static DatabaseConnectionService database;
+    private static DatabaseConnectionService database;
 
     public static void main(String[] args) {
         new JFXPanel();
         Platform.runLater(Main::launch);
     }
 
-
     private static void launch() {
         database = new DatabaseConnectionService("src/Workspace.db");
 
         ErrorHandler e = new ErrorHandler();
-        Image image = new Image(new File("files/images/test_images/main_images/Menu_Image.jpg").toURI().toString());
         Stage stage = new Stage();
         stage.setTitle("Avoid Death");
         stage.setResizable(false);
@@ -92,9 +88,7 @@ public class Main {
 
     public static void enterMenu(TextField text, ErrorHandler e) {
         if (!Objects.equals(text.getText(), "")) {
-            e.nullFeature();
-
-            Transition.screenChange(root, ScreenGen.getMenu(group), group, screenWidth, screenHeight);
+            Transition.screenChange(root, ScreenGen.getMenu(group), group, screenWidth, screenHeight, 1);
         } else {
             e.nullField();
         }
