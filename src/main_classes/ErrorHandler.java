@@ -48,6 +48,15 @@ class ErrorHandler {
         al.showAndWait();
     }
 
+    void medErr() {
+        Alert al = new Alert(AlertType.ERROR);
+        al.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        al.setTitle("Media Error!");
+        al.setHeaderText("The media player could not be initialised.");
+        al.setContentText("The program will now close (Sorry!).");
+        al.showAndWait();
+    }
+
     void exception(Exception ex) {
         Alert al = new Alert(AlertType.ERROR);
         al.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
